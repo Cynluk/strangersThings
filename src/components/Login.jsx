@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { login } from "../api/auth";
+import useAuth from "../hooks/useAuth";
 
-export default function Login({ setToken }) {
+export default function Login() {
+  const {setToken}=useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

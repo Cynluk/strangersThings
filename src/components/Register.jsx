@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import { registerUser } from "../api/auth";
+import useAuth from "../hooks/useAuth";
 
-export default function Register({ setToken }) {
+
+export default function Register() {
+  const {setToken}=useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
