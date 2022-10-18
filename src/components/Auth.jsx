@@ -8,6 +8,7 @@ export default function Auth({ setToken }) {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError]= useState("");
   const navigate = useNavigate();
 
   return (
@@ -15,21 +16,27 @@ export default function Auth({ setToken }) {
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-
+          setError("");
           let result;
           if (method === "register") {
             result = await registerUser(username, password);
           } else {
             result = await loginUser(username, password);
           }
-          console.log(result);
-
-          const token = result.data.token;
+          if (result.success){
+            const token = result.data.token;
           localStorage.setItem("token", token);
           setToken(token);
+          setPassword("");
+          setUsername("");
           navigate("/posts");
+          } else {
+            setError(result.error.message);
+          }
+          
         }}
       >
+        {error && <h5>{error}</h5>}
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}

@@ -7,7 +7,7 @@ export const fetchAllPosts = async () => {
 };
 
 export const fetchPostById = async(id) => {
-  const reposnse = await fetch (
+  const response = await fetch (
     `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/${id}`,
     
   );

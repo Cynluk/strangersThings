@@ -7,9 +7,7 @@ export default function useAuth() {
 
   useEffect(() => {
     async function getMe() {
-      console.log("Token before fetch");
       const result = await fetchMe(token);
-      console.log(result);
       setUser(result.data);
     }
     if (token) {
@@ -19,7 +17,7 @@ export default function useAuth() {
     }
   }, [token]);
 
-  console.log("user currently is: ", user);
+  
 
   return {
     token,

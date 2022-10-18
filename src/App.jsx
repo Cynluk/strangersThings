@@ -5,10 +5,11 @@ import NavBar from "./components/NavBar";
 import AllPosts from "./components/AllPosts";
 import "./App.css";
 import Auth from "./components/Auth";
+import PostById from "./components/PostById";
 
 function App() {
   const { setToken, user } = useAuth();
-  console.log("user: ", user);
+
 
   return (
     <div className="App">
@@ -18,7 +19,7 @@ function App() {
         <Route path="/auth/:method" element={<Auth setToken={setToken} />} />
         <Route path="/user/me" element={"Profile"} />
         <Route path="/posts" element={<AllPosts />} />
-        <Route path="/posts/post_id" element={"singlePost"} />
+        <Route path="/posts/:id" element={<PostById/>} />
         <Route path="/posts/post_id/messages" element={"messages"} />
       </Routes>
     </div>
