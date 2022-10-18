@@ -1,28 +1,35 @@
 import { useState, useEffect } from "react";
-import { registerUser } from "../api/auth";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { registerUser, loginUser } from "../api/auth";
 import useAuth from "../hooks/useAuth";
 
+export default function Auth({ setToken }) {
+  const { method } = useParams();
 
-export default function Register() {
-  const {setToken}=useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div>
       <form
         onSubmit={async (event) => {
           event.preventDefault();
-          console.log({ username, password });
-          // hit the register api route
-          const result = await registerUser(username, password);
+
+          let result;
+          if (method === "register") {
+            result = await registerUser(username, password);
+          } else {
+            result = await loginUser(username, password);
+          }
           console.log(result);
+
           const token = result.data.token;
           localStorage.setItem("token", token);
           setToken(token);
+          navigate("/posts");
         }}
       >
-        <h3>Create a New User</h3>
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -32,10 +39,12 @@ export default function Register() {
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          type="text"
-          placeholder="email"
+          type="password"
+          placeholder="password"
         />
-        <button type="submit">Register</button>
+        <button type="submit">
+          {method === "register" ? "Register" : "Login"}
+        </button>
       </form>
     </div>
   );

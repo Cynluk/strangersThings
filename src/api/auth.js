@@ -1,6 +1,6 @@
 export async function registerUser(username, password) {
   const response = await fetch(
-    "https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/users/register",
+    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/users/register`,
     {
       method: "POST",
       headers: {
@@ -32,7 +32,7 @@ export async function fetchMe(token) {
   return result;
 }
 
-export async function login(username, password) {
+export async function loginUser(username, password) {
   const response = await fetch(
     `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/users/login`,
     {
