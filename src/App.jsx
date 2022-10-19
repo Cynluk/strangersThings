@@ -10,7 +10,7 @@ import NewPostForm from "./components/NewPostForm";
 import EditForm from "./components/EditForm";
 
 function App() {
-  const { setToken, user } = useAuth();
+  const {token, setToken, user } = useAuth();
 
   return (
     <div className="App">
@@ -22,7 +22,7 @@ function App() {
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/posts/:id" element={<PostById />} />
         <Route path="/posts/create_new_post" element={<NewPostForm />} />
-        <Route path="/posts/edit/:id" element={<EditForm />} />
+        <Route path="/posts/edit/:id" element={<EditForm token={token}/>} />
         <Route path="/posts/post_id/messages" element={"messages"} />
       </Routes>
     </div>

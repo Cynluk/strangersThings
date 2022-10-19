@@ -9,10 +9,15 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 function SinglePost() {
+  const[searchInput, setSearchInput]=useState("");
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const params = useParams();
   const { token } = useAuth();
+
+const searchBar=()=>{
+
+}
 
   useEffect(() => {
     async function getPostById() {

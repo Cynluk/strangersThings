@@ -51,6 +51,7 @@ export const editPost = async (
   title,
   description,
   price,
+  location,
   willDeliver
 ) => {
   const response = await fetch(
@@ -66,6 +67,7 @@ export const editPost = async (
           title,
           description,
           price,
+          location,
           willDeliver,
         },
       }),
