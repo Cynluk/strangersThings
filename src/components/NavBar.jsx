@@ -19,6 +19,7 @@ export default function NavBar({ user, setToken }) {
       {user.username !== "Guest" ? (
         <>
           <Link to="/user/me">Profile </Link>
+          <Link to="/posts/create_new_post">Create a Post</Link>
           <button
             onClick={() => {
               localStorage.removeItem("token");
