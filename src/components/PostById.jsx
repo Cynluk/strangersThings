@@ -10,13 +10,16 @@ import useAuth from "../hooks/useAuth";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { createMessage } from "../api/message";
+import Message from "./Messages";
 
 function SinglePost() {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const params = useParams();
-  const { token } = useAuth();
+  const { token, user } = useAuth();
+  console.log(user);
 
   const searchBar = () => {};
 
@@ -50,22 +53,31 @@ function SinglePost() {
     console.log("token: ", token);
     console.log("post: ", post);
     navigate(`/posts/edit/${post._id}`);
-    console.log("Username:", post.isAuthor);
   }
 
+  async function handleMessage() {
+    const result = await createMessage(token, post._id, post.title);
+    navigate(`/posts/${post._id}/messages`);
+    console.log(result);
+  }
+  console.log("The post", post);
   return (
     <Card style={{ width: "800px" }}>
       <Card.Title>{post.title}</Card.Title>
       <Card.Text>Description: {post.description}</Card.Text>
       <Card.Text>Price: {post.price}</Card.Text>
       <Card.Text>{post.willDeliver}</Card.Text>
-
-      <Button variant="primary" onClick={handleDelete}>
-        Delete
-      </Button>
-      <Button variant="primary" onClick={handleEdit}>
-        Edit
-      </Button>
+      {user?._id === post.author?._id && (
+        <div>
+          <Button variant="primary" onClick={handleDelete}>
+            Delete
+          </Button>
+          <Button variant="primary" onClick={handleEdit}>
+            Edit
+          </Button>
+        </div>
+      )}
+      <Message postId={post._id} />
     </Card>
   );
 }

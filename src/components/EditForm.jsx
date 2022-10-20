@@ -101,7 +101,7 @@ export default function EditPost({ token }) {
           }}
         ></Form.Check>
         <Button variant="primary" type="submit">
-          Updated Post
+          Update Post
         </Button>
       </Form>
     </div>
