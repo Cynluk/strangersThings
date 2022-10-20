@@ -47,7 +47,10 @@ function SinglePost() {
       post.willDeliver
     );
     console.log(result);
+    console.log("token: ", token);
+    console.log("post: ", post);
     navigate(`/posts/edit/${post._id}`);
+    console.log("Username:", post.isAuthor);
   }
 
   return (
@@ -66,4 +69,5 @@ function SinglePost() {
     </Card>
   );
 }
+
 export default SinglePost;
