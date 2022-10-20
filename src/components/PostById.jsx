@@ -67,6 +67,7 @@ function SinglePost() {
       <Card.Text>Description: {post.description}</Card.Text>
       <Card.Text>Price: {post.price}</Card.Text>
       <Card.Text>{post.willDeliver}</Card.Text>
+
       {user?._id === post.author?._id && (
         <div>
           <Button variant="primary" onClick={handleDelete}>
@@ -81,5 +82,4 @@ function SinglePost() {
     </Card>
   );
 }
-
 export default SinglePost;

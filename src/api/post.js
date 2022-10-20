@@ -1,6 +1,13 @@
-export const fetchAllPosts = async () => {
+export const fetchAllPosts = async (token) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts`
+    `https://strangers-things.herokuapp.com/api/2209-FTB-PT-WEB-FT/posts`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
   const result = await response.json();
   return result;
@@ -8,7 +15,7 @@ export const fetchAllPosts = async () => {
 
 export const fetchPostById = async (id) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/${id}`
+    `https://strangers-things.herokuapp.com/api/2209-FTB-PT-WEB-FT/posts/${id}`
   );
   const result = await response.json();
   return result;
@@ -23,7 +30,7 @@ export const createPost = async (
   willDeliver
 ) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts`,
+    `https://strangers-things.herokuapp.com/api/2209-FTB-PT-WEB-FT/posts`,
     {
       method: "POST",
       headers: {
@@ -55,7 +62,7 @@ export const editPost = async (
   willDeliver
 ) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/${id}`,
+    `https://strangers-things.herokuapp.com/api/2209-FTB-PT-WEB-FT/posts/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -87,7 +94,7 @@ export const deletePost = async (
   // willDeliver
 ) => {
   const response = await fetch(
-    `https://strangers-things.herokuapp.com/api/2209-PT-FTB-WEB-FT/posts/${id}`,
+    `https://strangers-things.herokuapp.com/api/2209-FTB-PT-WEB-FT/posts/${id}`,
     {
       method: "DELETE",
       headers: {

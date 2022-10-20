@@ -21,21 +21,8 @@ export default function AllPosts() {
     getAllPosts();
   }, []);
 
-  // function postMatches(post, text) {
-  //   if (
-  //     searchTerm === post.title ||
-  //     post.description ||
-  //     post.price ||
-  //     post.location
-  //   )
-  //     return filteredPosts;
-  //   else {
-  //     return postsToDisplay;
-  //   }
-  // }
-  // const filteredPosts = posts.filter((post) => postMatches(post, searchTerm));
-  // const postsToDisplay = searchTerm.length ? filteredPosts : posts;
-
+  const filteredPosts = posts.filter((post) => post.title.includes(searchTerm));
+  console.log("posts", posts);
   // return true if any of the fields you want to check against include the text
   // strings have an .includes() method
 
@@ -50,27 +37,51 @@ export default function AllPosts() {
         />
 
         {/* postsToDisplay.map */}
-        {posts.map((post) => {
-          return (
-            <div key={post._id} className={styles.container}>
-              <Card.Title>{post.title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Description: {post.description}
-              </Card.Subtitle>
-              <Card.Text>Price: {post.price}</Card.Text>
-              <Card.Text>Location: {post.location}</Card.Text>
-              <Card.Text>{post.willDeliver}</Card.Text>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  navigate(`/posts/${post._id}`);
-                }}
-              >
-                See Details
-              </Button>
-            </div>
-          );
-        })}
+        {posts && searchTerm
+          ? posts
+              .filter((post) => post.title.toLowerCase().includes(searchTerm))
+              .map((post) => {
+                return (
+                  <div key={post._id} className={styles.container}>
+                    <Card.Title>{post.title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">
+                      Description: {post.description}
+                    </Card.Subtitle>
+                    <Card.Text>Price: {post.price}</Card.Text>
+                    <Card.Text>Location: {post.location}</Card.Text>
+                    <Card.Text>{post.willDeliver}</Card.Text>
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        navigate(`/posts/${post._id}`);
+                      }}
+                    >
+                      See Details
+                    </Button>
+                  </div>
+                );
+              })
+          : posts.map((post) => {
+              return (
+                <div key={post._id} className={styles.container}>
+                  <Card.Title>{post.title}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    Description: {post.description}
+                  </Card.Subtitle>
+                  <Card.Text>Price: {post.price}</Card.Text>
+                  <Card.Text>Location: {post.location}</Card.Text>
+                  <Card.Text>{post.willDeliver}</Card.Text>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      navigate(`/posts/${post._id}`);
+                    }}
+                  >
+                    See Details
+                  </Button>
+                </div>
+              );
+            })}
       </Card.Body>
     </Card>
   );

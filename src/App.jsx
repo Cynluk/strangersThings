@@ -9,9 +9,11 @@ import PostById from "./components/PostById";
 import NewPostForm from "./components/NewPostForm";
 import EditForm from "./components/EditForm";
 import Messages from "./components/Messages";
+import Profile from "./components/Profile";
 
 function App() {
   const { token, setToken, user } = useAuth();
+  console.log("User", user);
 
   return (
     <div className="App">
@@ -19,7 +21,7 @@ function App() {
       <NavBar setToken={setToken} user={user} />
       <Routes>
         <Route path="/auth/:method" element={<Auth setToken={setToken} />} />
-        <Route path="/user/me" element={"Profile"} />
+        <Route path="/user/me" element={<Profile />} />
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/posts/:id" element={<PostById />} />
         <Route path="/posts/create_new_post" element={<NewPostForm />} />
