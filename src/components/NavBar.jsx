@@ -1,11 +1,12 @@
 import { useReducer } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 
 export default function NavBar({ user, setToken }) {
+  const navigate = useNavigate();
   return (
     <Nav fill variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
@@ -39,6 +40,7 @@ export default function NavBar({ user, setToken }) {
             onClick={() => {
               localStorage.removeItem("token");
               setToken("");
+              navigate("/auth/login");
             }}
           >
             Log Out
