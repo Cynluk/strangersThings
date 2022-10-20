@@ -1,35 +1,50 @@
 import { useReducer } from "react";
 import { Link } from "react-router-dom";
-
 import useAuth from "../hooks/useAuth";
+
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 
 export default function NavBar({ user, setToken }) {
   return (
-    <nav>
-      <h3>Welcome, {user.username}</h3>
-      <Link to="/posts">Home</Link>
+    <Nav fill variant="tabs" defaultActiveKey="/home">
+      <Nav.Item>
+        <h3>Welcome, {user.username}</h3>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/posts">Home</Nav.Link>
+      </Nav.Item>
       {user.username === "Guest" ? (
         <>
           {" "}
-          <Link to="/auth/register">Register</Link>
-          <Link to="/auth/login"> Login</Link>
+          <Nav.Item>
+            <Nav.Link href="/auth/register">Register</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/auth/login"> Login</Nav.Link>
+          </Nav.Item>
         </>
       ) : null}
 
       {user.username !== "Guest" ? (
         <>
-          <Link to="/user/me">Profile </Link>
-          <Link to="/posts/create_new_post">Create a Post</Link>
-          <button
+          <Nav.Item>
+            <Nav.Link href="/user/me">Profile </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/posts/create_new_post">Create a Post</Nav.Link>
+          </Nav.Item>
+          <Button
+            variant="primary"
             onClick={() => {
               localStorage.removeItem("token");
               setToken("");
             }}
           >
             Log Out
-          </button>
+          </Button>{" "}
         </>
       ) : null}
-    </nav>
+    </Nav>
   );
 }

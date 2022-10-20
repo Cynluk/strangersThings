@@ -17,8 +17,6 @@ export default function useAuth() {
     }
   }, [token]);
 
-  
-
   return {
     token,
     setToken,

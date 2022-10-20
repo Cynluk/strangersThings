@@ -1,7 +1,10 @@
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import { createPost } from "../api/post";
+
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default function NewPost() {
   const { token } = useAuth();
@@ -14,7 +17,8 @@ export default function NewPost() {
 
   return (
     <div>
-      <form
+      <Form
+        style={{ width: "800px" }}
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await createPost(
@@ -30,52 +34,56 @@ export default function NewPost() {
         }}
       >
         <h3>Create a New Post</h3>
-        <label>Title:</label>
-        <input
+        <Form.Label>Title:</Form.Label>
+        <Form.Control
           value={title}
           type="text"
           placeholder="Enter a name for your post."
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-        ></input>
-        <label>Description:</label>
-        <input
+        ></Form.Control>
+        <Form.Label>Description:</Form.Label>
+        <Form.Control
           value={description}
           type="text"
           placeholder="Enter a description for your post."
           onChange={(e) => {
             setDescription(e.target.value);
           }}
-        ></input>
-        <label>Price:</label>
-        <input
+          as="textarea"
+          rows={5}
+        />
+        <Form.Label>Price:</Form.Label>
+        <Form.Control
           value={price}
           type="text"
           placeholder="How much is the item?"
           onChange={(e) => {
             setPrice(e.target.value);
           }}
-        ></input>
-        <label>Location:</label>
-        <input
+        ></Form.Control>
+        <Form.Label>Location:</Form.Label>
+        <Form.Control
           value={location}
           type="text"
           placeholder="The location of the post.(Optional)"
           onChange={(e) => {
             setLocation(e.target.value);
           }}
-        ></input>
-        <label>Willing to Deliver:</label>
-        <input
+        ></Form.Control>
+        <Form.Label>Willing to Deliver:</Form.Label>
+        <Form.Check
           value={willDeliver}
           type="checkbox"
           onChange={() => {
             setWillDeliver(!willDeliver);
           }}
-        ></input>
-        <button type="submit">Create</button>
-      </form>
+        ></Form.Check>
+        <Button variant="primary" type="submit">
+          Create
+        </Button>
+      </Form>
     </div>
   );
 }

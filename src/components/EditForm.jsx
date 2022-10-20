@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import useAuth from "../hooks/useAuth";
 import { useNavigate, useParams } from "react-router-dom";
-import { editPost } from "../api/post";
-import { fetchAllPosts } from "../api/post";
+import useAuth from "../hooks/useAuth";
+import { editPost, fetchAllPosts } from "../api/post";
 
-export default function EditPost({token}) {
- 
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
+export default function EditPost({ token }) {
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const params = useParams();
@@ -14,7 +15,7 @@ export default function EditPost({token}) {
   const [price, setPrice] = useState(post.price);
   const [location, setLocation] = useState(post.location);
   const [willDeliver, setWillDeliver] = useState(false);
-console.log(token)
+  console.log(token);
 
   useEffect(() => {
     async function getPostById() {
@@ -34,7 +35,8 @@ console.log(token)
 
   return (
     <div>
-      <form
+      <Form
+        style={{ width: "800px" }}
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await editPost(
@@ -51,52 +53,57 @@ console.log(token)
         }}
       >
         <h3>Edit the Post</h3>
-        <label>Title:</label>
-        <input
+        <Form.Label>Title:</Form.Label>
+        <Form.Control
           value={title}
           type="text"
           placeholder={post.title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-        ></input>
-        <label>Description:</label>
-        <input
+        ></Form.Control>
+
+        <Form.Label>Description:</Form.Label>
+        <Form.Control
           value={description}
           type="text"
           placeholder={post.description}
           onChange={(e) => {
             setDescription(e.target.value);
           }}
-        ></input>
-        <label>Price:</label>
-        <input
+          as="textarea"
+          rows={5}
+        />
+        <Form.Label>Price:</Form.Label>
+        <Form.Control
           value={price}
           type="text"
           placeholder={post.price}
           onChange={(e) => {
             setPrice(e.target.value);
           }}
-        ></input>
-        <label>Location:</label>
-        <input
+        ></Form.Control>
+        <Form.Label>Location:</Form.Label>
+        <Form.Control
           value={location}
           type="text"
           placeholder={post.location}
           onChange={(e) => {
             setLocation(e.target.value);
           }}
-        ></input>
-        <label>Willing to Deliver:</label>
-        <input
+        ></Form.Control>
+        <Form.Label>Willing to Deliver:</Form.Label>
+        <Form.Check
           value={willDeliver}
           type="checkbox"
           onChange={() => {
             setWillDeliver(!willDeliver);
           }}
-        ></input>
-        <button type="submit">Updated Post</button>
-      </form>
+        ></Form.Check>
+        <Button variant="primary" type="submit">
+          Updated Post
+        </Button>
+      </Form>
     </div>
   );
 }
