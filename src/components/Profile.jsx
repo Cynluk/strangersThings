@@ -16,6 +16,7 @@ export default function Messages() {
     async function getAllMessages() {
       const userData = await fetchMe(token);
       setMessage(userData.data.messages);
+      console.log(userData);
     }
     getAllMessages();
 

@@ -50,7 +50,7 @@ export default function AllPosts() {
                     <Card.Text>Price: {post.price}</Card.Text>
                     <Card.Text>Location: {post.location}</Card.Text>
                     <Card.Text>
-                      Will Deliver: {post.willDeliver === true ? "yes" : "no"}
+                      Will Deliver?: {post.willDeliver === true ? "Yes" : "No"}
                     </Card.Text>
                     <Button
                       variant="primary"
@@ -73,7 +73,7 @@ export default function AllPosts() {
                   <Card.Text>Price: {post.price}</Card.Text>
                   <Card.Text>Location: {post.location}</Card.Text>
                   <Card.Text>
-                    Will Deliver: {post.willDeliver === true ? "yes" : "no"}
+                    Will Deliver?: {post.willDeliver === true ? "Yes" : "No"}
                   </Card.Text>
                   <Button
                     variant="primary"

@@ -47,7 +47,7 @@ function SinglePost() {
       <Card.Text>Description: {post.description}</Card.Text>
       <Card.Text>Price: {post.price}</Card.Text>
       <Card.Text>
-        Will Deliver: {post.willDeliver === true ? "yes" : "no"}
+        Will Deliver?: {post.willDeliver === true ? "Yes" : "No"}
       </Card.Text>
 
       {user?._id === post.author?._id && (
@@ -60,7 +60,11 @@ function SinglePost() {
           </Button>
         </div>
       )}
-      {user?._id === post.username?._id && <Message postId={post._id} />}
+      {user?.username !== "Guest" ? (
+        <>
+          <Message postId={post._id} />
+        </>
+      ) : null}
     </Card>
   );
 }
