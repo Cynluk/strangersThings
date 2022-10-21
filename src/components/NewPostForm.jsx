@@ -38,7 +38,7 @@ export default function NewPost() {
         <Form.Control
           value={title}
           type="text"
-          placeholder="Enter a name for your post."
+          placeholder="Enter a name for your post. (Required)"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -47,7 +47,7 @@ export default function NewPost() {
         <Form.Control
           value={description}
           type="text"
-          placeholder="Enter a description for your post."
+          placeholder="Enter a description for your post. (Required)"
           onChange={(e) => {
             setDescription(e.target.value);
           }}
@@ -58,7 +58,7 @@ export default function NewPost() {
         <Form.Control
           value={price}
           type="text"
-          placeholder="How much is the item?"
+          placeholder="How much is the item? (Required)"
           onChange={(e) => {
             setPrice(e.target.value);
           }}

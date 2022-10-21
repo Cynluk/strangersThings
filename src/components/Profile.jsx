@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 export default function Messages() {
   const { token } = useAuth();
   const [message, setMessage] = useState([]);
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
     async function getAllMessages() {
@@ -14,10 +15,17 @@ export default function Messages() {
       setMessage(userData.data.messages);
     }
     getAllMessages();
+
+    async function getUserPosts() {
+      const userData = await fetchMe(token);
+      setPost(userData.data.posts);
+    }
+    getUserPosts();
   }, []);
   return (
     <Card style={{ width: "800px" }}>
       <Card.Body>
+        <Card.Title className={styles.title}> Messages</Card.Title>
         {message.map((arr) => {
           return (
             <div key={arr._id} className={styles.container}>
@@ -28,6 +36,42 @@ export default function Messages() {
           );
         })}
       </Card.Body>
+      <Card.Body>
+        <Card.Title className={styles.title}>My Posts</Card.Title>
+        {post.map((arr) => {
+          return (
+            <div key={arr._id} className={styles.container}>
+              <Card.Title>Post Title: {arr.title}</Card.Title>
+              <Card.Subtitle>Descripttion {arr.description}</Card.Subtitle>
+              <Card.Text>Price {arr.price}</Card.Text>
+            </div>
+          );
+        })}
+      </Card.Body>
     </Card>
   );
 }
+
+//   useEffect(() => {
+//     async function getUserPosts() {
+//       const userData = await fetchMe(token);
+//       setPost(userData.data.posts);
+//     }
+//     getUserPosts();
+//   }, []);
+//   return (
+//     <Card style={{ width: "800px" }}>
+//       <Card.Body>
+//         {post.map((arr) => {
+//           return (
+//             <div key={arr._id} className={styles.container}>
+//               <Card.Title>Post Title: {arr.title}</Card.Title>
+//               <Card.Subtitle>Descripttion {arr.description}</Card.Subtitle>
+//               <Card.Text>Price {arr.price}</Card.Text>
+//             </div>
+//           );
+//         })}
+//       </Card.Body>
+//     </Card>
+//   );
+//
