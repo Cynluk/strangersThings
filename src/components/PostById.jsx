@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { fetchAllPosts, deletePost, editPost } from "../api/post";
 import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { fetchAllPosts, deletePost, editPost } from "../api/post";
 
+import styles from "../styles/PostById.module.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { createMessage } from "../api/message";
@@ -52,10 +53,18 @@ function SinglePost() {
 
       {user?._id === post.author?._id && (
         <div>
-          <Button variant="primary" onClick={handleDelete}>
+          <Button
+            className={styles.button}
+            variant="primary"
+            onClick={handleDelete}
+          >
             Delete
           </Button>
-          <Button variant="primary" onClick={handleEdit}>
+          <Button
+            className={styles.button}
+            variant="primary"
+            onClick={handleEdit}
+          >
             Edit
           </Button>
         </div>

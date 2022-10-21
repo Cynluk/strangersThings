@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { createMessage } from "../api/message";
 import { useNavigate } from "react-router-dom";
 
+import styles from "../styles/Message.module.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -32,7 +33,7 @@ export default function Message({ postId }) {
           rows={5}
         />
 
-        <Button variant="primary" type="submit">
+        <Button className={styles.button} variant="primary" type="submit">
           Submit
         </Button>
       </Form>
