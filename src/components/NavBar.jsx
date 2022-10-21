@@ -1,6 +1,6 @@
 // import { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
@@ -10,12 +10,12 @@ export default function NavBar({ user, setToken }) {
   return (
     <Nav fill variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <h3>Welcome, {user.username}</h3>
+        <h3>Welcome, {user?.username ? user.username : ""}</h3>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="/posts">Home</Nav.Link>
       </Nav.Item>
-      {user.username === "Guest" ? (
+      {user?.username === "Guest" ? (
         <>
           {" "}
           <Nav.Item>
@@ -27,7 +27,7 @@ export default function NavBar({ user, setToken }) {
         </>
       ) : null}
 
-      {user.username !== "Guest" ? (
+      {user?.username !== "Guest" ? (
         <>
           <Nav.Item>
             <Nav.Link href="/user/me">Profile </Nav.Link>

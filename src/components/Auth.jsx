@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { registerUser, loginUser } from "../api/auth";
-// import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
