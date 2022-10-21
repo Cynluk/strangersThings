@@ -1,6 +1,6 @@
-import { useReducer } from "react";
+// import { useReducer } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+// import useAuth from "../hooks/useAuth";
 
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";

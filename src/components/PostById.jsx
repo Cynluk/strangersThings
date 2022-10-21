@@ -21,7 +21,7 @@ function SinglePost() {
   const { token, user } = useAuth();
   console.log(user);
 
-  const searchBar = () => {};
+  // const searchBar = () => {};
 
   useEffect(() => {
     async function getPostById() {

@@ -6,6 +6,8 @@ import styles from "../styles/AllPosts.module.css";
 
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export default function AllPosts() {
   const { setToken } = useAuth();
@@ -29,14 +31,17 @@ export default function AllPosts() {
   return (
     <Card style={{ width: "800px" }}>
       <Card.Body>
-        <input
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
+        <InputGroup className="searchBar">
+          <Form.Control
+            placeholder="Search Posts by Title."
+            // {" "}
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
+        </InputGroup>
 
-        {/* postsToDisplay.map */}
         {posts && searchTerm
           ? posts
               .filter((post) => post.title.toLowerCase().includes(searchTerm))

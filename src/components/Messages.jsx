@@ -4,6 +4,9 @@ import useAuth from "../hooks/useAuth";
 import { createMessage } from "../api/message";
 import { useNavigate } from "react-router-dom";
 
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 export default function Message({ postId }) {
   const { token } = useAuth();
   const [content, setContent] = useState("");
@@ -13,7 +16,7 @@ export default function Message({ postId }) {
 
   return (
     <div>
-      <form
+      <Form
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await createMessage(token, postId, content);
@@ -22,20 +25,26 @@ export default function Message({ postId }) {
           console.log(result);
         }}
       >
-        <input
+        <Form.Control
           placeholder="Write message here"
           type="text"
           value={content}
           onChange={(e) => {
             setContent(e.target.value);
           }}
-        ></input>
-        <button type="submit">Submit</button>
+          as="textarea"
+          rows={5}
+        />
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+
         {/* {posts && content? content.map(() => {
             return (
               <div>{content}</div>):null}
             })} */}
-      </form>
+      </Form>
     </div>
   );
 }
