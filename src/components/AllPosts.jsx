@@ -23,11 +23,6 @@ export default function AllPosts() {
     getAllPosts();
   }, []);
 
-  const filteredPosts = posts.filter((post) => post.title.includes(searchTerm));
-  console.log("posts", posts);
-  // return true if any of the fields you want to check against include the text
-  // strings have an .includes() method
-
   return (
     <Card style={{ width: "800px" }}>
       <Card.Body>
@@ -54,7 +49,9 @@ export default function AllPosts() {
                     </Card.Subtitle>
                     <Card.Text>Price: {post.price}</Card.Text>
                     <Card.Text>Location: {post.location}</Card.Text>
-                    <Card.Text>{post.willDeliver}</Card.Text>
+                    <Card.Text>
+                      Will Deliver: {post.willDeliver === true ? "yes" : "no"}
+                    </Card.Text>
                     <Button
                       variant="primary"
                       onClick={() => {
@@ -75,7 +72,9 @@ export default function AllPosts() {
                   </Card.Subtitle>
                   <Card.Text>Price: {post.price}</Card.Text>
                   <Card.Text>Location: {post.location}</Card.Text>
-                  <Card.Text>{post.willDeliver}</Card.Text>
+                  <Card.Text>
+                    Will Deliver: {post.willDeliver === true ? "yes" : "no"}
+                  </Card.Text>
                   <Button
                     variant="primary"
                     onClick={() => {

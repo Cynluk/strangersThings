@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import { editPost, fetchAllPosts } from "../api/post";
 
 import Button from "react-bootstrap/Button";
@@ -15,7 +14,6 @@ export default function EditPost({ token }) {
   const [price, setPrice] = useState(post.price);
   const [location, setLocation] = useState(post.location);
   const [willDeliver, setWillDeliver] = useState(false);
-  console.log(token);
 
   useEffect(() => {
     async function getPostById() {
@@ -23,6 +21,7 @@ export default function EditPost({ token }) {
       const [singlePost] = result.data.posts.filter((post) => {
         return post._id === params.id;
       });
+
       setPost(singlePost);
       setTitle(singlePost.title);
       setDescription(singlePost.description);
@@ -49,13 +48,12 @@ export default function EditPost({ token }) {
             willDeliver
           );
           navigate("/posts");
-          console.log(result);
         }}
       >
         <h3>Edit the Post</h3>
         <Form.Label>Title:</Form.Label>
         <Form.Control
-          value={title}
+          value={title || ""}
           type="text"
           placeholder={post.title}
           onChange={(e) => {
@@ -65,7 +63,7 @@ export default function EditPost({ token }) {
 
         <Form.Label>Description:</Form.Label>
         <Form.Control
-          value={description}
+          value={description || ""}
           type="text"
           placeholder={post.description}
           onChange={(e) => {
@@ -76,7 +74,7 @@ export default function EditPost({ token }) {
         />
         <Form.Label>Price:</Form.Label>
         <Form.Control
-          value={price}
+          value={price || ""}
           type="text"
           placeholder={post.price}
           onChange={(e) => {
@@ -85,7 +83,7 @@ export default function EditPost({ token }) {
         ></Form.Control>
         <Form.Label>Location:</Form.Label>
         <Form.Control
-          value={location}
+          value={location || ""}
           type="text"
           placeholder={post.location}
           onChange={(e) => {

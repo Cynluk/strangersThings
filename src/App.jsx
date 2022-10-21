@@ -13,11 +13,9 @@ import Profile from "./components/Profile";
 
 function App() {
   const { token, setToken, user } = useAuth();
-  console.log("User", user);
 
   return (
     <div className="App">
-      {/* <h4>{user?.username}</h4> */}
       <NavBar setToken={setToken} user={user} />
       <Routes>
         <Route path="/auth/:method" element={<Auth setToken={setToken} />} />
